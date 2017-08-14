@@ -23,8 +23,17 @@ $(document).ready(function(){
     $(".result").append("<p>" + displaySentence + "</p>");
 
     var wordCounts = getWordCounts(displaySentence.split(" "));
+    var sortableWordCounts = []
     for (var word in wordCounts) {
-      $(".result").append("<p>" + word + ": " + wordCounts[word] + "</p>");
+      sortableWordCounts.push([word, wordCounts[word]]);
     }
+
+    sortableWordCounts.sort(function(a, b) {
+      return b[1] - a[1];
+    });
+
+    sortableWordCounts.forEach(function(wordCount) {
+      $(".result").append("<p>" + wordCount[0] + ": " + wordCount[1] + "</p>");
+    });
   });
 });
