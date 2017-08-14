@@ -3,12 +3,8 @@ $(document).ready(function(){
     event.preventDefault();
     var sentence = $("input").val().split(" ");
 
-    var newSentence = [];
-
-    sentence.forEach(function(word){
-      if (word.length >= 3) {
-        newSentence.push(word);
-      }
+    var newSentence = sentence.filter(function(word) {
+      return word.length >= 3;
     });
 
     var displaySentence = newSentence.reverse().join(" ");
